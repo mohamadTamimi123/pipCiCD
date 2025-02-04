@@ -3,7 +3,7 @@ name: Deploy to Ubuntu Server
 on:
   push:
     branches:
-      - main  # یا هر شاخه‌ای که می‌خواهید روی آن دپلی کنید
+      - main
 
 jobs:
   deploy:
@@ -22,9 +22,9 @@ jobs:
           script: |
             mkdir -p /var/www/html/cicd
             rsync -avz ./ /var/www/html/cicd/
-            # دستورات اضافی برای نصب وابستگی ها و یا اجرای پروژه می تواند اینجا اضافه شود
-            # مثلا:
-            # cd /var/www/html/myproject
+            cd /var/www/html/cicd
+            docker-compose down
+            docker-compose up
             # sudo apt-get update && sudo apt-get install -y nodejs npm  (برای نصب nodejs و npm)
             # npm install  (برای نصب وابستگی های پروژه)
             # sudo systemctl restart nginx # یا هر سرویس دیگری که پروژه شما از آن استفاده می‌کند.
